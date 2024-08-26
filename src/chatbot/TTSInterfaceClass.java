@@ -10,13 +10,14 @@ import javax.swing.SwingUtilities;
  */
 public class TTSInterfaceClass extends javax.swing.JDialog {
 
-    
+    private TextToSpeechClass textToSpeechEngine = new TextToSpeechClass();
     //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
     // Default constructor does not perform any initialisation or setup tasks.
     public TTSInterfaceClass(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
         initComponents();
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,9 +38,9 @@ public class TTSInterfaceClass extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
         jTextField1 = new javax.swing.JTextField();
         kButton1 = new com.k33ptoo.components.KButton();
+        jSlider2 = new javax.swing.JSlider();
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
@@ -58,8 +59,6 @@ public class TTSInterfaceClass extends javax.swing.JDialog {
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Speed");
-
-        jSlider1.setBackground(new java.awt.Color(204, 204, 255));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener()
         {
@@ -80,21 +79,31 @@ public class TTSInterfaceClass extends javax.swing.JDialog {
             }
         });
 
+        jSlider2.setMaximum(500);
+        jSlider2.setMinimum(120);
+        jSlider2.addChangeListener(new javax.swing.event.ChangeListener()
+        {
+            public void stateChanged(javax.swing.event.ChangeEvent evt)
+            {
+                jSlider2StateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(kGradientPanel1Layout.createSequentialGroup()
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
@@ -105,8 +114,8 @@ public class TTSInterfaceClass extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -140,17 +149,24 @@ public class TTSInterfaceClass extends javax.swing.JDialog {
     //
     private void kButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_kButton1ActionPerformed
     {//GEN-HEADEREND:event_kButton1ActionPerformed
-       TextToSpeechClass textToSpeechEngine = new TextToSpeechClass();
 
         String text = jTextField1.getText();
         jTextArea2.append(text);
 
         SwingUtilities.invokeLater(() -> {
-            textToSpeechEngine.textToSpeech(text);
+            textToSpeechEngine.textToSpeech(text, textToSpeechEngine.speed);
             jTextArea2.selectAll();
             jTextArea2.replaceSelection("");
        });
     }//GEN-LAST:event_kButton1ActionPerformed
+
+    private void jSlider2StateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_jSlider2StateChanged
+    {//GEN-HEADEREND:event_jSlider2StateChanged
+
+        int speedValue = jSlider2.getValue();
+        textToSpeechEngine.speed = speedValue;
+        
+    }//GEN-LAST:event_jSlider2StateChanged
 
     //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
     // Displays the Chat Interface with additonal exception handling.
@@ -187,7 +203,7 @@ public class TTSInterfaceClass extends javax.swing.JDialog {
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider2;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField1;

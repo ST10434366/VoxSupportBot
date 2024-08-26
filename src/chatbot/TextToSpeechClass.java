@@ -10,6 +10,7 @@ import com.sun.speech.freetts.VoiceManager;
  */
 public class TextToSpeechClass {
     
+    public int speed = 0;
     //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
     // Default constructor does not perform any initialisation or setup tasks.
     public TextToSpeechClass()
@@ -21,7 +22,7 @@ public class TextToSpeechClass {
     // - Configures the system properties to include specific voice directories.
     // - The text is then spoken using the configured voice.
     // - Finally, the voice is deallocated upon completed execution.
-    public void textToSpeech(String text)
+    public void textToSpeech(String text, int speed)
     {
     System.setProperty("freetts.voices",
             "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory," +
@@ -34,7 +35,7 @@ public class TextToSpeechClass {
             voice.allocate();
 
             // Set parameters to approximate Twitch stream TTS
-            voice.setRate(120);  // Moderate to fast speech rate
+            voice.setRate(speed);  // Moderate to fast speech rate
             voice.setPitch(100); // Neutral pitch
             voice.setVolume(2);  // Medium volume
 

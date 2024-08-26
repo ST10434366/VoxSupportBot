@@ -2,7 +2,6 @@
 package chatbot;
 
 import javax.swing.ImageIcon;
-import javax.swing.SwingUtilities;
 /**
  *  
  * @author: ST10434366
@@ -107,7 +106,7 @@ public class ChatInterfaceClass extends javax.swing.JDialog {
     //
     private void kButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_kButton1ActionPerformed
     {//GEN-HEADEREND:event_kButton1ActionPerformed
-        TextToSpeechClass textToSpeechEngine = new TextToSpeechClass();
+
         ResponseGeneratorClass responseGenerator = new ResponseGeneratorClass();
         
         String message = jTextField1.getText();
@@ -120,9 +119,6 @@ public class ChatInterfaceClass extends javax.swing.JDialog {
             jTextField1.setText("");
         }
 
-        SwingUtilities.invokeLater(() -> {
-            textToSpeechEngine.textToSpeech(response);
-        });
     }//GEN-LAST:event_kButton1ActionPerformed
 
    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
