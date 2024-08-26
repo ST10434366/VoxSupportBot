@@ -23,3 +23,14 @@ https://github.com/user-attachments/assets/5a058a5a-2e86-4148-8ac4-af57e6f73430
 - Sentiment analysis
 - Voice type selection
 - Pitch and tone configuration
+
+## Skills applied
+✅ Java
+
+✅ JSwing
+
+✅ TTS 
+
+✅ Audio processing
+
+✅ Python
